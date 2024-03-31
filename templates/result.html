@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-US-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simple Calculator</title>
+    </head>
+    <body>
+        <h1>Result</h1>
+        <p>The result of the calculation is : {{  result  }}</p>
+        {% if result %}
+            <h2>Result</h2>
+            <p>The result of the calculation is: {{ result }}</p>
+        {% endif %}
+
+        {% if chat_result %}
+            <h2>Chatbot Response</h2>
+            <p>{{ chat_result }}</p>
+        {% endif %}
+    </body>
+</html>
