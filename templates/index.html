@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-US-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simple Calculator</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body>
+        <h1>Simple Calculator</h1>
+        <form action="/calculate" method="post">
+            <input type="number" name="number1" required>
+            <select name="operation" required>
+                <option value="add">+</option>
+                <option value="sub">-</option>
+                <option value="multiply">*</option>
+                <option value="divide">/</option>
+            </select>
+            <input type="number" name="number2" required>
+            <button type="submit">calculate</button>
+        </form>
+
+        <div id="chat-container">
+            <h2>Meet  ChatGPT</h2>
+            <div id="chat-log"></div>
+            <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off" />
+            <button id="chat-submit">Send</button>
+        </div>
+        <script>
+            $(document).ready(function() {
+                $("#chat-submit").click(function() {
+                    var userInput = $("#user-input").val();
+                    if (userInput !== "") {
+                        $("#user-input").val("");
+                        $("#chat-log").append("<p><strong>You:</strong> " + userInput + "</p>");
+                        $.ajax({
+                            type: "POST",
+                            url: "/chat",
+                            data: {
+                                message: userInput
+                            },
+                            success: function(response) {
+                                $("#chat-log").append("<p><strong>Chatbot:</strong> " + response + "</p>");
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+
+
+    </body>
+</html>
