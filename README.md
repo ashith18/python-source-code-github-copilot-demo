@@ -37,9 +37,9 @@ This project uses Jenkins for Continuous Integration and Deployment (CI/CD). The
 
 # Screenshots - GitHub Copilot
 
-![Image Alt text](/Images/dockerfile.jpg
+![Image Alt text](/Images/dockerfile.jpg)
 
-![Image Alt text](/Images/jenkinsfile.jpg 
+![Image Alt text](/Images/jenkinsfile.jpg)
 
 ![Image Alt text](/Images/jenkinsfile2.jpg
 
