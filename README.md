@@ -1,10 +1,10 @@
-# My Python Flask Application
+# Python Flask Application
 
 This repository contains a Python Flask application, along with a Dockerfile and a Jenkinsfile for building and deploying the application using Docker and Jenkins.
 
 ## Overview
 
-- **Flask Application**: A Python Flask web application that provides a simple API or web interface (describe your application's purpose and functionality here).
+- **Flask Application**: A Python Flask web application that provides a simple API or web interface.
 - **Dockerfile**: A Docker configuration file used to build a Docker image for the Flask application.
 - **Jenkinsfile**: A Jenkins pipeline script that automates the build, test, and deployment processes for the Flask application using Docker.
 
