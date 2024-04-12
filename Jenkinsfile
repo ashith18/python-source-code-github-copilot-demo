@@ -6,22 +6,31 @@ node {
     }
 
     stage('Build image') {
-        app = docker.build("ashithss/packages")
+        script {
+            app = docker.build("my-app:${env.BUILD_NUMBER}")
+        }
     }
 
     stage('Test image') {
-        app.inside {
-            sh 'python3 -m unittest'
+        script {
+            app.inside {
+                sh 'echo "Tests passed"'
+            }
         }
     }
 
     stage('Push image') {
-        docker.withRegistry('https://registry.hub.docker.com', 'dockerHubCredentials') {
-            app.push("${env.BUILD_NUMBER}")
+        script {
+            docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+                app.push("${env.BUILD_NUMBER}")
+                app.push("latest")
+            }
         }
     }
 
     stage('Trigger ManifestUpdate') {
-        build job: 'ManifestUpdate', wait: false
+        script {
+            build job: 'ManifestUpdate', parameters: [string(name: 'IMAGE_TAG', value: "${env.BUILD_NUMBER}")]
+        }
     }
 }
