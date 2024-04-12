@@ -1,4 +1,4 @@
-# DockerDemo
+# To test docker image
 
 1. git clone http://gitlab.10.16.85.156.nip.io/devops-solutions/dockerdemo.git
 2. cd dockerdemo
