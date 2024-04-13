@@ -1,6 +1,11 @@
 node {
     def app
-
+    // Check Docker version
+    stage('Check Docker') {
+        script {
+            sh 'docker -v'
+        }
+    }
     stage('Clone repository') {
         checkout scm
     }
