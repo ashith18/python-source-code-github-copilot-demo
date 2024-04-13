@@ -1,18 +1,13 @@
 node {
     def app
-    // Check Docker version
-    stage('Check Docker') {
-        script {
-            sh 'docker -v'
-        }
-    }
+    
     stage('Clone repository') {
         checkout scm
     }
 
     stage('Build image') {
         script {
-            docker.withRegistry('tcp://10.22.208.108:4243', 'dockerengine') {
+            docker.withServer('tcp://10.22.208.108:4243', 'dockerengine') {
              app = docker.build("ashithss/packages")   
             }  
         }
