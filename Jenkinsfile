@@ -1,36 +1,9 @@
 node {
-    def app
-    
-    stage('Clone repository') {
-        checkout scm
-    }
+    checkout scm
 
-    stage('Build image') {
-        script {
-            docker.withServer('tcp://10.22.208.108:4243', 'dockerengine') {
-             app = docker.build("ashithss/packages")   
-            }  
+    docker.withServer('tcp://10.22.208.108:4243', 'dockerengine') {
+        docker.image('mysql:8-oracle').withRun('-p 3306:3306') {
+            /* do things */
         }
-    }
-
-    stage('Test image') {
-        script {
-            app.inside {
-                sh 'echo "Tests passed"'
-            }
-        }
-    }
-
-    stage('Push image') {
-        script {
-            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                app.push("${env.BUILD_NUMBER}")
-            }
-        }
-    }
-
-    stage('Trigger ManifestUpdate') {
-        echo "triggering updatemanifestjob"
-                build job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
     }
 }
