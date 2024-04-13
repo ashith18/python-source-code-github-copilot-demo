@@ -7,7 +7,9 @@ node {
 
     stage('Build image') {
         script {
-            app = docker.build("ashithss/packages")
+            docker.withRegistry('tcp://10.22.208.108:4243', 'dockerengine') {
+             app = docker.build("ashithss/packages")   
+            }  
         }
     }
 
